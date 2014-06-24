@@ -142,11 +142,16 @@ window.requestAnimFrame = (function() {
             this.playerShip.x = this.renderer.sceneWidth/2;
             this.playerShip.y = this.renderer.sceneHeight/2;
             this.playerShip.velocity = 0.12;
-            this.playerShip.angleVelocity = 0.004;
+            this.playerShip.angleVelocity = 0.003;
             this.ships.push(this.playerShip);
 
             this.player = new Player(this.playerShip, 1);
             this.pilots.push(this.player);
+
+            var mainCanon = new Canon(6, 6, 1);
+            this.playerShip.attachItem(mainCanon, "canon", this.playerShip.body.slots[0], this.playerShip.body);
+            mainCanon.autoAim = false;
+            this.playerShip.canonsGroup3.push(mainCanon);
 
             var downModule = new Module(1, 0);
             this.playerShip.attachModule(downModule, downModule.connections[0], 0, 
@@ -156,7 +161,7 @@ window.requestAnimFrame = (function() {
             this.playerShip.attachModule(downDownModule, downDownModule.connections[0], 0, 
                 downModule.connections[1], downModule);
 
-            var plasmaCanon = new Canon( 1, 5, 1);
+            var plasmaCanon = new Canon(5, 5, 1);
             this.playerShip.attachItem(plasmaCanon, "canon", downDownModule.slots[0], downDownModule);
             plasmaCanon.autoAim = false;
             this.playerShip.canonsGroup1.push(plasmaCanon);
@@ -166,7 +171,7 @@ window.requestAnimFrame = (function() {
             this.playerShip.attachModule(leftModule, leftModule.connections[3], 0, 
                 this.playerShip.body.connections[2], this.playerShip.body);
 
-            var leftCanon = new Canon( 2, 2, 1);
+            var leftCanon = new Canon(3, 3, 1);
             this.playerShip.attachItem(leftCanon, "canon", leftModule.slots[0], leftModule);
             leftCanon.autoAim = false;
             this.playerShip.canonsGroup2.push(leftCanon);
@@ -180,7 +185,7 @@ window.requestAnimFrame = (function() {
             this.playerShip.attachModule(leftDownLeftModule, leftDownLeftModule.connections[3], 0, 
                 leftDownModule.connections[2], leftDownModule);
 
-            var leftDownLeftCanon = new Canon( 2, 2, 1);
+            var leftDownLeftCanon = new Canon(4, 4, 1);
             this.playerShip.attachItem(leftDownLeftCanon, "canon", leftDownLeftModule.slots[0], leftDownLeftModule);
             leftDownLeftCanon.autoAim = false;
             this.playerShip.canonsGroup3.push(leftDownLeftCanon);
@@ -191,7 +196,7 @@ window.requestAnimFrame = (function() {
             this.playerShip.attachModule(rightModule, rightModule.connections[2], 0, 
                 this.playerShip.body.connections[3], this.playerShip.body);
 
-            var rightCanon = new Canon( 2, 2, 1);
+            var rightCanon = new Canon(3, 3, 1);
             this.playerShip.attachItem(rightCanon, "canon", rightModule.slots[0], rightModule);
             rightCanon.autoAim = false;
             this.playerShip.canonsGroup2.push(rightCanon);
@@ -205,7 +210,7 @@ window.requestAnimFrame = (function() {
             this.playerShip.attachModule(rightDownRightModule, rightDownRightModule.connections[2], 0, 
                 rightDownModule.connections[3], rightDownModule);
 
-            var rightDownRightCanon = new Canon( 2, 2, 1);
+            var rightDownRightCanon = new Canon(4, 4, 1);
             this.playerShip.attachItem(rightDownRightCanon, "canon", rightDownRightModule.slots[0], rightDownRightModule);
             rightDownRightCanon.autoAim = false;
             this.playerShip.canonsGroup3.push(rightDownRightCanon);

@@ -9,11 +9,9 @@ define([
 ){
     var Shot = MovingObject.$extend ( {
         __init__ : function(side, type) {
+            console.log(type);
             var img = resourses["shot"+type];
             this.$super(img);
-            var scale = 0.3;
-            this.baseWidth = 50;
-            this.baseHeight = 50;
             this.damage = 0;
             this.side = side;
             this.maxLifetime = 0;
@@ -96,23 +94,25 @@ define([
             }
         },*/
         hitTarget : function (target) {
-            this.todelete = true;
             this.drawExplosion();
-            target.takeDamage(this.damage);
+            if(!target.takeDamage(this.damage)){
+                this.todelete = true;
+            }
         },
         drawExplosion : function () {
             var newSprite = new Sprite("explosion", 1);
             newSprite.x = this.x;
             newSprite.y = this.y;
-            newSprite.baseHeight = this.damage;
-            newSprite.baseWidth = this.damage;
+            var sqrtDmg = Math.sqrt(this.damage)*5;
+            newSprite.baseHeight = sqrtDmg;
+            newSprite.baseWidth = sqrtDmg;
             game.objects.push(newSprite);
 
             newSprite = new Sprite("glow", 1);
             newSprite.x = this.x;
             newSprite.y = this.y;
-            newSprite.baseHeight = this.damage*2;
-            newSprite.baseWidth = this.damage*2;
+            newSprite.baseHeight = sqrtDmg;
+            newSprite.baseWidth = sqrtDmg;
             game.objects.push(newSprite);
         },
         draw : function () {

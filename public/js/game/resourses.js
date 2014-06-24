@@ -29,6 +29,8 @@ define([
             this.ship_canon_body4.src = 'static/JS-ship_canon_body4.png';
             this.ship_canon_body5 = new Image();
             this.ship_canon_body5.src = 'static/JS-ship_canon_body5.png';
+            this.ship_canon_body6 = new Image();
+            this.ship_canon_body6.src = 'static/JS-ship_canon_body5.png';
             this.ship_canon_gun1 = new Image();
             this.ship_canon_gun1.src = 'static/JS-ship_canon_gun1.png';
             this.ship_canon_gun2 = new Image();
@@ -39,6 +41,8 @@ define([
             this.ship_canon_gun4.src = 'static/JS-ship_canon_gun4.png';
             this.ship_canon_gun5 = new Image();
             this.ship_canon_gun5.src = 'static/JS-ship_canon_gun5.png';
+            this.ship_canon_gun6 = new Image();
+            this.ship_canon_gun6.src = 'static/JS-ship_canon_gun6.png';
             this.ship_module0 = new Image();
             this.ship_module0.src = 'static/JS-ship_module0.png';
             this.ship_module1 = new Image();
@@ -57,10 +61,20 @@ define([
             this.ship_body_destroyed1.src = 'static/JS-ship_body_destroyed1.png';
 
             this.background_star1 = new Image();
-            this.background_star1.src = 'static/epic.png';
+            this.background_star1.src = 'static/shot6.png';
 
             this.shot1 = new Image();
-            this.shot1.src = 'static/epic.png';
+            this.shot1.src = 'static/shot1.png';
+            this.shot2 = new Image();
+            this.shot2.src = 'static/shot2.png';
+            this.shot3 = new Image();
+            this.shot3.src = 'static/shot3.png';
+            this.shot4 = new Image();
+            this.shot4.src = 'static/shot4.png';
+            this.shot5 = new Image();
+            this.shot5.src = 'static/shot5.png';
+            this.shot6 = new Image();
+            this.shot6.src = 'static/shot6.png';
 
             this.background = new Image();
             this.background.src = 'static/background.png';

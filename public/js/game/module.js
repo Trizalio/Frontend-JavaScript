@@ -172,7 +172,9 @@ define([
             }
             if(this.curHealth <= 0){
                 this.destroy();
+                return true;
             }
+            return false;
             /*var img = new Image();
             img.src = 'static/JS-crack.png';
             var crack = new BindedObject(img, this);
@@ -192,8 +194,8 @@ define([
                 this.clear();
                 this.crush();
                 this.img = this.secondryImage;
-                this.width = this.width*1.2;
-                this.height = this.height*1.2;
+                this.width = this.width*1.3;
+                this.height = this.height*1.3;
         },
         
         burn : function () {
