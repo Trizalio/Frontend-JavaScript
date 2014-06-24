@@ -38,8 +38,8 @@ define([
             var range = Math.sqrt(sqrRange);
             enemyShip.x = game.x + range*Math.sin(randomAngle);
             enemyShip.y = game.y + range*Math.cos(randomAngle);
-            enemyShip.velocity = 0.06;
-            enemyShip.angleVelocity = 0.0005;
+            enemyShip.velocity = 0.07;
+            enemyShip.angleVelocity = 0.0004;
 
             //plasmaCanon = new Canon( 1, 2, 1);
             //enemyShip.attachItem(plasmaCanon, "canon", enemyShip.body.slots[0], enemyShip.body);
@@ -55,8 +55,8 @@ define([
             }
 
 
-            enemyShip.velocity -= (sidePower+backPower)/100;
-            enemyShip.angleVelocity -= (sidePower+backPower)/10000;
+            enemyShip.velocity -= (sidePower+backPower)/100/2;
+            enemyShip.angleVelocity -= (sidePower+backPower)/10000/2;
 
             if(backPower >= 0.25){
                 var downModule = new Module(1, 0);

@@ -198,8 +198,8 @@ define([
                 this.clear();
                 this.crush();
                 this.img = this.secondryImage;
-                this.width = this.width*1.3;
-                this.height = this.height*1.3;
+                this.width = this.width*1.4;
+                this.height = this.height*1.4;
         },
         
         burn : function () {

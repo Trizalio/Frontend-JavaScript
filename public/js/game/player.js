@@ -31,37 +31,36 @@ define([
         checkTarget : function () {
             this.$super();
         },
+        setCanonsGroupState : function (group, state){
+            for (var i = 0; i < this.ship["canonsGroup" + group].length; i++){
+                this.ship["canonsGroup" + group][i].shoot = state;
+            }
+        },
+        setCanonsState : function (activeGroup){
+            for(var i = 0; i < 4; i++){
+                if(i == activeGroup){
+                    this.setCanonsGroupState(i, true);
+                }else{
+                    this.setCanonsGroupState(i, false);
+                }
+            }
+        },
         move : function () {
             //console.log("hi");
             var backwardsPower = 0.3;
-            for (var i = 0; i < this.ship.canonsGroup1.length; i++){
-                if(game.keydown["x"] == true){
-                    this.ship.canonsGroup1[i].shoot = true;
-                }else{
-                    this.ship.canonsGroup1[i].shoot = false;
-                }
+
+            if(game.keydown["z"] == true){
+                this.setCanonsState(0);
+            }else if(game.keydown["x"] == true){
+                this.setCanonsState(1);
+            }else if(game.keydown["c"] == true){
+                this.setCanonsState(2);
+            }else if(game.keydown["v"] == true){
+                this.setCanonsState(3);
+            }else{
+                this.setCanonsState(-1);
             }
-            for (var i = 0; i < this.ship.canonsGroup0.length; i++){
-                if(game.keydown["z"] == true){
-                    this.ship.canonsGroup0[i].shoot = true;
-                }else{
-                    this.ship.canonsGroup0[i].shoot = false;
-                }
-            }
-            for (var i = 0; i < this.ship.canonsGroup2.length; i++){
-                if(game.keydown["c"] == true){
-                    this.ship.canonsGroup2[i].shoot = true;
-                }else{
-                    this.ship.canonsGroup2[i].shoot = false;
-                }
-            }
-            for (var i = 0; i < this.ship.canonsGroup3.length; i++){
-                if(game.keydown["v"] == true){
-                    this.ship.canonsGroup3[i].shoot = true;
-                }else{
-                    this.ship.canonsGroup3[i].shoot = false;
-                }
-            }
+
             if(game.keydown["w"] == true){
                 this.ship.vx += this.ship.velocity*Math.sin(this.ship.angle);
                 this.ship.vy -= this.ship.velocity*Math.cos(this.ship.angle);

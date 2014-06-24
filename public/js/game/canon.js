@@ -53,7 +53,7 @@ define([
                 this.reloadSpeed = 0.2;
                 this.side = 0;
                 this.ready = false;
-                this.damage = 10;
+                this.damage = 15;
                 this.shotSpeed = 4;
                 this.shotLifeTime = 150;
                 this.shotEnergy = 50;
@@ -69,7 +69,7 @@ define([
                 this.reloadSpeed = 0.2;
                 this.side = 0;
                 this.ready = false;
-                this.damage = 2;
+                this.damage = 3;
                 this.shotSpeed = 6;
                 this.shotLifeTime = 40;
                 this.shotEnergy = 20;
@@ -86,7 +86,7 @@ define([
                 this.side = 0;
                 this.ready = false;
                 this.damage = 10;
-                this.shotSpeed = 7;
+                this.shotSpeed = 10;
                 this.shotLifeTime = 60;
                 this.shotEnergy = 100;
                 this.shotWidth = 3;
@@ -103,12 +103,12 @@ define([
                 this.side = 0;
                 this.ready = false;
                 this.damage = 4;
-                this.shotSpeed = 6;
-                this.shotLifeTime = 40;
+                this.shotSpeed = 12;
+                this.shotLifeTime = 35;
                 this.shotEnergy = 40;
                 this.shotWidth = 4;
                 this.shotHeight = 8;
-                this.shotFriction = 0.999;
+                this.shotFriction = 0.95;
                 this.shotAmount = 5;
                 this.shotAngle = 0.2;
                 this.autoAim = false;
@@ -117,17 +117,17 @@ define([
                 this.gun.width = 8;
                 this.gun.height = 25;
 
-                this.loaded = 12;
+                this.loaded = 10;
                 this.reloadSpeed = 0.8;
                 this.side = 0;
                 this.ready = false;
                 this.damage = 90;
-                this.shotSpeed = 6;
+                this.shotSpeed = 1;
                 this.shotLifeTime = 100;
                 this.shotEnergy = 500;
                 this.shotWidth = 8;
                 this.shotHeight = 20;
-                this.shotFriction = 0.995;
+                this.shotFriction = 1.05;
                 this.autoAim = false;
             }else if(secondClass == 6){
 
