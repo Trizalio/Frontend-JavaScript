@@ -54,9 +54,9 @@ window.requestAnimFrame = (function() {
             this.vy = 0;
 
             this.addPlayer();
-            this.addStars();
-            this.addGlows();
-            
+            this.addStars(30);
+            this.addGlows(20);
+
 
             
             this.enemyCooldown = 5000;
@@ -69,7 +69,8 @@ window.requestAnimFrame = (function() {
             this.pause = false;
             this.lost = false;
             this.play = true;
-            this.addEnemy();
+            this.addEnemy(1, 0);
+            //this.addEnemy(1, 1);
         },
         start : function (){
             this.play = true;
@@ -136,13 +137,13 @@ window.requestAnimFrame = (function() {
                 this.spacePressed = false;
             }
         },
-        addStars : function () {
-            for(var i = 0; i < 10; i++){
+        addStars : function (amount) {
+            for(var i = 0; i < amount; i++){
                 var newStar = new StaticDepthObject("star", 1);
             }
         },
-        addGlows : function () {
-            for(var i = 0; i < 10; i++){
+        addGlows : function (amount) {
+            for(var i = 0; i < amount; i++){
                 var newStar = new StaticDepthObject("glow", 1);
             }
         },

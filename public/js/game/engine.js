@@ -33,7 +33,7 @@ define([
             return new Canon( base, type, 1);
 
         },
-        addEnemy : function (power) {
+        addEnemy : function (power, side) {
             var enemyShip = new Ship(1, 1);
             var marker = new EnemyMarker(enemyShip);
             var randomAngle = Math.random()*Math.PI*2;
@@ -135,7 +135,13 @@ define([
                     }
                 }
             }
-            enemyPilot = new Pilot(enemyShip, 0);
+            var enemyPilot;
+            if(side == null){
+                enemyPilot = new Pilot(enemyShip, 0);
+            }else{
+                enemyPilot = new Pilot(enemyShip, side);
+            }
+            
             game.pilots.push(enemyPilot);
 
             game.ships.push(enemyShip);
