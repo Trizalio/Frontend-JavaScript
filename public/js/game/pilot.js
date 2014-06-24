@@ -24,6 +24,11 @@ define([
             this.move();
             if(this.ship){
                 if(this.ship.body.destroyed == true){
+                    console.log("destroyed");
+                    if(this.side == 0){
+                        game.score *= 1.5;
+                        game.addEnemy();
+                    }
                     this.todelete = true;
                 }
                 if(this.ship.todelete == false){

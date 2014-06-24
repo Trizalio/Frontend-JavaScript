@@ -20,13 +20,25 @@ define([
             this.sprite_flame2.src = 'static/JS-sprite_flame2.png';
 
             this.ship_canon_body1 = new Image();
-            this.ship_canon_body1.src = 'static/JS-ship_canon_body.png';
+            this.ship_canon_body1.src = 'static/JS-ship_canon_body1.png';
             this.ship_canon_body2 = new Image();
             this.ship_canon_body2.src = 'static/JS-ship_canon_body2.png';
+            this.ship_canon_body3 = new Image();
+            this.ship_canon_body3.src = 'static/JS-ship_canon_body3.png';
+            this.ship_canon_body4 = new Image();
+            this.ship_canon_body4.src = 'static/JS-ship_canon_body4.png';
+            this.ship_canon_body5 = new Image();
+            this.ship_canon_body5.src = 'static/JS-ship_canon_body5.png';
             this.ship_canon_gun1 = new Image();
-            this.ship_canon_gun1.src = 'static/JS-ship_canon_gun2.png';
+            this.ship_canon_gun1.src = 'static/JS-ship_canon_gun1.png';
             this.ship_canon_gun2 = new Image();
             this.ship_canon_gun2.src = 'static/JS-ship_canon_gun2.png';
+            this.ship_canon_gun3 = new Image();
+            this.ship_canon_gun3.src = 'static/JS-ship_canon_gun3.png';
+            this.ship_canon_gun4 = new Image();
+            this.ship_canon_gun4.src = 'static/JS-ship_canon_gun4.png';
+            this.ship_canon_gun5 = new Image();
+            this.ship_canon_gun5.src = 'static/JS-ship_canon_gun5.png';
             this.ship_module0 = new Image();
             this.ship_module0.src = 'static/JS-ship_module0.png';
             this.ship_module1 = new Image();

@@ -191,6 +191,7 @@ define([
             moduleNew.localx = connectionOld.x + Math.sin(angle)*connectionNew.y - Math.cos(angle)*connectionNew.x;
             moduleNew.localy = connectionOld.y - Math.cos(angle)*connectionNew.y - Math.sin(angle)*connectionNew.x;
             moduleNew.bind = moduleOld;
+            moduleNew.side = this.side;
         },
         attachCanon : function (canon) {
             this.canons.push(canon);

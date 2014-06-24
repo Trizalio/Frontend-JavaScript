@@ -56,7 +56,7 @@ window.requestAnimFrame = (function() {
             this.vx = 0;
             this.vy = 0;
             
-            this.enemyCooldown = 1000;
+            this.enemyCooldown = 5000;
             this.enemyTimer = this.enemyCooldown;
             this.enemyPower = 1;
             this.score = 0;
@@ -141,52 +141,76 @@ window.requestAnimFrame = (function() {
             this.playerShip = new Ship(1, 1);
             this.playerShip.x = this.renderer.sceneWidth/2;
             this.playerShip.y = this.renderer.sceneHeight/2;
-            this.playerShip.velocity = 0.07;
-            this.playerShip.angleVelocity = 0.002;
+            this.playerShip.velocity = 0.12;
+            this.playerShip.angleVelocity = 0.004;
             this.ships.push(this.playerShip);
 
             this.player = new Player(this.playerShip, 1);
             this.pilots.push(this.player);
 
-            var module = new Module(1, 0);
-            this.playerShip.attachModule(module, module.connections[0], 0, 
+            var downModule = new Module(1, 0);
+            this.playerShip.attachModule(downModule, downModule.connections[0], 0, 
                 this.playerShip.body.connections[0], this.playerShip.body);
-            //console.log(module);
-            var module2 = new Module(1, 0);
-            this.playerShip.attachModule(module2, module2.connections[2], 0, 
-                module.connections[3], module);
-            var module3 = new Module(1, 0);
-            this.playerShip.attachModule(module3, module3.connections[1], Math.PI, 
-                module2.connections[1], module2);
-            var plasmaCanon = new Canon( 2, 1, 1);
-            this.playerShip.attachItem(plasmaCanon, "canon", module.slots[0], module);
-            var plasmaCanon2 = new Canon( 2, 2, 1);
-            this.playerShip.attachItem(plasmaCanon2, "canon", module2.slots[0], module2);
-            //console.log(plasmaCanon + ", " +"canon" + ", " + module.slots[0] + ", " +module);
-            //this.playerShip.trace();
 
-            var enemyShip = new Ship(1, 1);
-            enemyShip.x = this.renderer.sceneWidth/2+100;
-            enemyShip.y = this.renderer.sceneHeight/2;
-            enemyShip.velocity = 0.07;
-            enemyShip.angleVelocity = 0.002;
-            this.ships.push(enemyShip);
+            var downDownModule = new Module(1, 0);
+            this.playerShip.attachModule(downDownModule, downDownModule.connections[0], 0, 
+                downModule.connections[1], downModule);
 
-            enemyPilot = new Pilot(enemyShip, 0);
-            this.pilots.push(enemyPilot);
-            /*plasmaCanon = new Canon( 1, 2, 1);
-            //console.log("123");
-            enemyShip.attachItem(plasmaCanon, "canon", enemyShip.body.slots[0], enemyShip.body);
-            //console.log("23");
+            var plasmaCanon = new Canon( 1, 5, 1);
+            this.playerShip.attachItem(plasmaCanon, "canon", downDownModule.slots[0], downDownModule);
+            plasmaCanon.autoAim = false;
+            this.playerShip.canonsGroup1.push(plasmaCanon);
 
-            module = new Module(1, 1);
-            this.playerShip.attachModule(module, module.connections[2], 0, 
+
+            var leftModule = new Module(1, 0);
+            this.playerShip.attachModule(leftModule, leftModule.connections[3], 0, 
+                this.playerShip.body.connections[2], this.playerShip.body);
+
+            var leftCanon = new Canon( 2, 2, 1);
+            this.playerShip.attachItem(leftCanon, "canon", leftModule.slots[0], leftModule);
+            leftCanon.autoAim = false;
+            this.playerShip.canonsGroup2.push(leftCanon);
+
+            var leftDownModule = new Module(1, 0);
+            this.playerShip.attachModule(leftDownModule, leftDownModule.connections[0], 0, 
+                leftModule.connections[1], leftModule);
+
+
+            var leftDownLeftModule = new Module(1, 0);
+            this.playerShip.attachModule(leftDownLeftModule, leftDownLeftModule.connections[3], 0, 
+                leftDownModule.connections[2], leftDownModule);
+
+            var leftDownLeftCanon = new Canon( 2, 2, 1);
+            this.playerShip.attachItem(leftDownLeftCanon, "canon", leftDownLeftModule.slots[0], leftDownLeftModule);
+            leftDownLeftCanon.autoAim = false;
+            this.playerShip.canonsGroup3.push(leftDownLeftCanon);
+
+
+
+            var rightModule = new Module(1, 0);
+            this.playerShip.attachModule(rightModule, rightModule.connections[2], 0, 
                 this.playerShip.body.connections[3], this.playerShip.body);
-            module = new Module(1, 1);
-            this.playerShip.attachModule(module, module.connections[1], 0, 
-                this.playerShip.body.connections[1], this.playerShip.body);
-            var plasmaCanon = new Canon(module, 2, 1, 1);
-            this.playerShip.attachCanon(plasmaCanon);*/
+
+            var rightCanon = new Canon( 2, 2, 1);
+            this.playerShip.attachItem(rightCanon, "canon", rightModule.slots[0], rightModule);
+            rightCanon.autoAim = false;
+            this.playerShip.canonsGroup2.push(rightCanon);
+
+            var rightDownModule = new Module(1, 0);
+            this.playerShip.attachModule(rightDownModule, rightDownModule.connections[0], 0, 
+                rightModule.connections[1], rightModule);
+
+
+            var rightDownRightModule = new Module(1, 0);
+            this.playerShip.attachModule(rightDownRightModule, rightDownRightModule.connections[2], 0, 
+                rightDownModule.connections[3], rightDownModule);
+
+            var rightDownRightCanon = new Canon( 2, 2, 1);
+            this.playerShip.attachItem(rightDownRightCanon, "canon", rightDownRightModule.slots[0], rightDownRightModule);
+            rightDownRightCanon.autoAim = false;
+            this.playerShip.canonsGroup3.push(rightDownRightCanon);
+
+
 
 
         },
@@ -223,8 +247,8 @@ window.requestAnimFrame = (function() {
             this.turnMany(this.pilots);
             this.turnMany(this.background);
             this.checkBroders();
-            this.addEnemies();
-            this.score++;
+            this.addEnemiesByTime();
+            //this.score++;
         },
         drawMany : function (objects) {
             for (var i = 0; i < objects.length; i++)
@@ -242,7 +266,7 @@ window.requestAnimFrame = (function() {
                 this.playerShip.draw();
                 renderer.resetTempShift();
             }*/
-            renderer.drawText(this.score, 20, 50, 15, "#FFF");
+            renderer.drawText(Math.round(this.score), 20, 50, 15, "#FFF");
         },
         drawAll : function () {
             this.renderer.clearScene();
@@ -264,13 +288,18 @@ window.requestAnimFrame = (function() {
             this.vx *= this.friction;
             this.vy *= this.friction;
         },
-        addEnemies : function () {
+        addEnemy : function () {
+            //console.log(this.enemyTimer);
+            engine.addEnemy(this.enemyPower);
+            this.enemyPower += 0.5;
+        },
+        addEnemiesByTime : function () {
             //console.log(this.enemyTimer);
             this.enemyTimer += 1;
             if(this.enemyTimer > this.enemyCooldown){
                 this.enemyTimer = 0;
                 engine.addEnemy(this.enemyPower);
-                this.enemyPower += 1;
+                this.enemyPower += 0.5;
             }
         },
         update : function () {

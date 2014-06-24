@@ -24,6 +24,8 @@ define([
             this.mainImage = null;
             this.secondryImage = null;
 
+            this.turnedOff = false;
+
             if(type == 0 || type == "hull"){
                 this.mainImage = resourses["ship_body"+type];
                 this.secondryImage = resourses["ship_body_destroyed"+type];
@@ -63,9 +65,9 @@ define([
                 //this.mass = 10;
                 this.addSlot(1, 0, 0);
                 this.addConnection(2, 0, -10, Math.PI);
-                this.addConnection(1, 0, 10, 0);
-                this.addConnection(1, -10, 0, Math.PI/2);
-                this.addConnection(1, 10, 0, -Math.PI/2);
+                this.addConnection(2, 0, 10, 0);
+                this.addConnection(2, -10, 0, Math.PI/2);
+                this.addConnection(2, 10, 0, -Math.PI/2);
             }
             this.curHealth = this.maxHealth;
             this.todelete = false;
@@ -93,6 +95,9 @@ define([
             }
         },
         turn : function () {
+            if(this.bind.destroyed == true || this.bind.turnedOff == true){
+                this.turnedOff = true;
+            }
             if(this.destroyed == false){
                 if(this.curHealth < this.maxHealth/2){
                     this.burn();
@@ -162,6 +167,9 @@ define([
         takeDamage : function (damage) {
             //console.log(damage);
             this.curHealth -= damage;
+            if(this.side == 0){
+                game.score += damage;
+            }
             if(this.curHealth <= 0){
                 this.destroy();
             }
@@ -175,11 +183,17 @@ define([
             this.cracks.push(crack);*/
         },
         destroy : function () {
+            if(this.side == 0){
+                game.score += this.maxHealth;
+            }
+
                 this.destroyed = true;
                 //this.todelete = true;
                 this.clear();
                 this.crush();
                 this.img = this.secondryImage;
+                this.width = this.width*1.2;
+                this.height = this.height*1.2;
         },
         
         burn : function () {

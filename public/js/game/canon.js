@@ -33,31 +33,82 @@ define([
                 this.gun.height = 18;
 
                 this.loaded = 7;
-                this.reloadSpeed = 0.1;
+                this.reloadSpeed = 0.2;
                 this.side = 0;
                 this.ready = false;
-                this.damage = 100;
-                this.shotSpeed = 5;
-                this.shotLifeTime = 100;
+                this.damage = 25;
+                this.shotSpeed = 4;
+                this.shotLifeTime = 150;
                 this.shotWidth = this.shotHeight = 5;
                 this.shotFriction = 0.995;
                 this.shotEnergy = 50;
+                this.autoAim = true;
             }else if(secondClass == 2){
 
                 this.gun.width = 4;
                 this.gun.height = 18;
 
                 this.loaded = 1;
-                this.reloadSpeed = 0.3;
+                this.reloadSpeed = 0.2;
                 this.side = 0;
                 this.ready = false;
-                this.damage = 10;
-                this.shotSpeed = 15;
-                this.shotLifeTime = 10;
+                this.damage = 4;
+                this.shotSpeed = 6;
+                this.shotLifeTime = 40;
                 this.shotEnergy = 20;
                 this.shotWidth = this.shotHeight = 3;
                 this.shotFriction = 0.999;
+                this.autoAim = true;
+            }else if(secondClass == 3){
+
+                this.gun.width = 4;
+                this.gun.height = 18;
+
+                this.loaded = 1;
+                this.reloadSpeed = 0.2;
+                this.side = 0;
+                this.ready = false;
+                this.damage = 4;
+                this.shotSpeed = 6;
+                this.shotLifeTime = 40;
+                this.shotEnergy = 20;
+                this.shotWidth = this.shotHeight = 3;
+                this.shotFriction = 0.999;
+                this.autoAim = false;
+            }else if(secondClass == 4){
+
+                this.gun.width = 4;
+                this.gun.height = 18;
+
+                this.loaded = 1;
+                this.reloadSpeed = 0.2;
+                this.side = 0;
+                this.ready = false;
+                this.damage = 4;
+                this.shotSpeed = 6;
+                this.shotLifeTime = 40;
+                this.shotEnergy = 20;
+                this.shotWidth = this.shotHeight = 3;
+                this.shotFriction = 0.999;
+                this.autoAim = false;
+            }else if(secondClass == 5){
+
+                this.gun.width = 8;
+                this.gun.height = 25;
+
+                this.loaded = 10;
+                this.reloadSpeed = 0.2;
+                this.side = 0;
+                this.ready = false;
+                this.damage = 80;
+                this.shotSpeed = 6;
+                this.shotLifeTime = 100;
+                this.shotWidth = this.shotHeight = 5;
+                this.shotFriction = 0.995;
+                this.shotEnergy = 50;
+                this.autoAim = false;
             }
+            this.maxRange = this.shotLifeTime * this.shotSpeed;
 
             this.charge = 0;
             this.todelete = false;
@@ -70,21 +121,30 @@ define([
             this.targetRange = null;
             this.targetAngle = null;
             this.dangle = null;
+
+            this.shoot = false;
             //this.gun.localy = 0;
         },
         turn : function () {
-            if(this.bind.destroyed == false){
-                this.$super();
-                this.gun.turn();
-                this.findEnemy();
-                if(this.target != null){
-                    this.attack();
-                }
+            this.$super();
+            this.gun.turn();
+            //console.log(this.bind);
+            if(this.bind.destroyed == false && this.bind.turnedOff == false){
                 if(this.charge > -this.loaded){
                     this.charge -= this.reloadSpeed;
                     this.gun.localy = this.charge/2-10;;
                 }else{
                     this.ready = true;
+                }
+                if(this.autoAim){
+                    this.findEnemy();
+                    if(this.target != null){
+                        this.attack();
+                    }
+                }else{
+                    if(this.shoot && this.ready == true){
+                        this.shot();
+                    }
                 }
             }
         },
@@ -124,7 +184,9 @@ define([
             }else if(this.localangle < -Math.PI){
                 this.localangle += 2*Math.PI;
             }
-            if(this.ready == true && this.bind.energy > this.shotEnergy){
+            this.targetRange = Math.sqrt(dx*dx + dy*dy);
+            if(this.ready == true && this.bind.energy > this.shotEnergy && 
+                this.maxRange > this.targetRange){
                 this.shot();
             }
             //console.log(this.localangle);
