@@ -81,6 +81,9 @@ define([
 
             this.shop_screen = new Image();
             this.shop_screen.src = 'static/JS-shop_screen.png';
+
+            this.gui_enemymarker = new Image();
+            this.gui_enemymarker.src = 'static/JS-gui_enemymarker.png';
         },
     });
     return Resourses;

@@ -9,7 +9,7 @@ define([
 ){
     var Shot = MovingObject.$extend ( {
         __init__ : function(side, type) {
-            console.log(type);
+            //console.log(type);
             var img = resourses["shot"+type];
             this.$super(img);
             this.damage = 0;

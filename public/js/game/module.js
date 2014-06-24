@@ -55,6 +55,8 @@ define([
                 this.addConnection(2, 0, -30, Math.PI);
                 this.addConnection(2, -10, 0, Math.PI/2);
                 this.addConnection(2, 10, 0, -Math.PI/2);
+                this.addConnection(2, -10, 20, Math.PI/2);
+                this.addConnection(2, 10, 20, -Math.PI/2);
             }else if(type == 1 && number == 0){
                 this.energyCapacity = 2000;
                 this.energyGeneration = 10;

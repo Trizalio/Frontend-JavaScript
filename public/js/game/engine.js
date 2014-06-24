@@ -5,13 +5,15 @@ define([
     'game/ship',
     'game/module',
     'game/pilot',
-    'game/canon'
+    'game/canon',
+    'game/enemymarker'
 ], function (
     Class,
     Ship,
     Module,
     Pilot, 
-    Canon
+    Canon, 
+    EnemyMarker
 ){
     var Engine = Class.$extend ( {
 
@@ -33,11 +35,12 @@ define([
         },
         addEnemy : function (power) {
             var enemyShip = new Ship(1, 1);
+            var marker = new EnemyMarker(enemyShip);
             var randomAngle = Math.random()*Math.PI*2;
             var sqrRange = renderer.sceneHeight*renderer.sceneHeight + renderer.sceneWidth*renderer.sceneWidth;
             var range = Math.sqrt(sqrRange);
-            enemyShip.x = game.x + range*Math.sin(randomAngle);
-            enemyShip.y = game.y + range*Math.cos(randomAngle);
+            enemyShip.x = game.playerShip.x + range*Math.sin(randomAngle);
+            enemyShip.y = game.playerShip.y + range*Math.cos(randomAngle);
             enemyShip.velocity = 0.07;
             enemyShip.angleVelocity = 0.0004;
 

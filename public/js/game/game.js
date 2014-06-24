@@ -178,8 +178,8 @@ window.requestAnimFrame = (function() {
             this.playerShip.canonsGroup2.push(leftCanon);
 
             var leftDownModule = new Module(1, 0);
-            this.playerShip.attachModule(leftDownModule, leftDownModule.connections[0], 0, 
-                leftModule.connections[1], leftModule);
+            this.playerShip.attachModule(leftDownModule, leftDownModule.connections[3], 0, 
+                this.playerShip.body.connections[4], this.playerShip.body);
 
 
             var leftDownLeftModule = new Module(1, 0);
@@ -203,8 +203,8 @@ window.requestAnimFrame = (function() {
             this.playerShip.canonsGroup2.push(rightCanon);
 
             var rightDownModule = new Module(1, 0);
-            this.playerShip.attachModule(rightDownModule, rightDownModule.connections[0], 0, 
-                rightModule.connections[1], rightModule);
+            this.playerShip.attachModule(rightDownModule, rightDownModule.connections[2], 0, 
+                this.playerShip.body.connections[5], this.playerShip.body);
 
 
             var rightDownRightModule = new Module(1, 0);
@@ -331,21 +331,6 @@ window.requestAnimFrame = (function() {
                 console.log("Game Over");
                 this.play = false;
             }
-
-            /*var newSprite = new Sprite("explosion", 1);
-            newSprite.x = this.x;
-            newSprite.y = this.y;
-            var sqrtDmg = Math.sqrt(this.damage)*5;
-            newSprite.baseHeight = sqrtDmg;
-            newSprite.baseWidth = sqrtDmg;
-            game.objects.push(newSprite);
-
-            newSprite = new Sprite("glow", 1);
-            newSprite.x = this.x;
-            newSprite.y = this.y;
-            newSprite.baseHeight = sqrtDmg;
-            newSprite.baseWidth = sqrtDmg;
-            game.objects.push(newSprite);*/
 
             
         },
