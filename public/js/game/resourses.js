@@ -63,6 +63,8 @@ define([
             this.background_star1 = new Image();
             this.background_star1.src = 'static/shot6.png';
 
+            this.shot0 = new Image();
+            this.shot0.src = 'static/shot4.png';
             this.shot1 = new Image();
             this.shot1.src = 'static/shot1.png';
             this.shot2 = new Image();

@@ -3,12 +3,14 @@ define([
     'game/bindedobject',
     'game/sprite',
     'game/connection',
-    'game/slot'
+    'game/shot',
+    'game/slot',
 ], function (
     Class,
     BindedObject,
     Sprite,
     Connection,
+    Shot,
     Slot
 ){
     var Module = BindedObject.$extend ( {
@@ -79,6 +81,8 @@ define([
             this.burnPeriod = 3;
             this.oldX = 0;
             this.oldY = 0;
+            this.cvx = 0;
+            this.cvy = 0;
         },
         tradeEnergy : function () {
             this.energy += this.energyGeneration;
@@ -216,11 +220,11 @@ define([
                 var minSize = Math.min(this.height, this.width)/2;
                 flame.x = this.x + (0.5 - Math.random()) * minSize;
                 flame.y = this.y + (0.5 - Math.random()) * minSize;
-                var dx = this.x - this.oldX;
-                var dy = this.y - this.oldY;
-                this.totalSpeed = Math.sqrt(dx*dx + dy*dy);
-                this.moveAngle = Math.atan(dy/dx) + Math.PI/2;
-                if(dx > 0){
+                this.cvx = this.x - this.oldX;
+                this.cvy = this.y - this.oldY;
+                this.totalSpeed = Math.sqrt(this.cvx*this.cvx + this.cvy*this.cvy);
+                this.moveAngle = Math.atan(this.cvy/this.cvx) + Math.PI/2;
+                if(this.cvx > 0){
                     this.moveAngle += Math.PI;
                 }
                 flame.angle = this.moveAngle;
@@ -234,7 +238,38 @@ define([
                 //console.log("burn");
             }
         },
+
+        createBonuses : function () {
+
+            var shotAmount = this.maxHealth/100;
+            var healBulletType = 0;
+            var maxSpeed = 10;
+            var friction = 0.97;
+            var lifeTime = 500;
+            var width = 20;
+            var height = 20;
+            var heal = -30;
+
+            for(var i = 0; i < shotAmount; i++){
+                //console.log(angleShift);
+                var shot = new Shot(this.side, healBulletType);
+                shot.x = this.x;
+                shot.y = this.y;
+                shot.angle = Math.random()*Math.PI*2;
+                shot.vx = maxSpeed*Math.sin(shot.angle) + this.cvx;
+                shot.vy = -maxSpeed*Math.cos(shot.angle) + this.cvy;
+                shot.vangle = (Math.random()-0.5) * 0.1;
+                shot.friction = friction;
+                shot.maxLifetime = lifeTime;
+                shot.baseWidth = width;
+                shot.baseHeight = height;
+                shot.damage = heal;
+                game.addShot(shot);
+                console.log(shot);
+            }
+        },
         crush : function () {
+            this.createBonuses();
            // console.log("crush");
             var maxTime = 50;
             var explosionsAmount = 2 + Math.random()*4;

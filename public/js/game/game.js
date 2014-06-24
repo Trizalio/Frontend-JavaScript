@@ -69,8 +69,8 @@ window.requestAnimFrame = (function() {
             this.pause = false;
             this.lost = false;
             this.play = true;
-            this.addEnemy(1, 0);
-            //this.addEnemy(1, 1);
+            this.addEnemy();
+            //engine.addEnemy(1, 1);
         },
         start : function (){
             this.play = true;
