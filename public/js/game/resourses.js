@@ -61,7 +61,7 @@ define([
             this.ship_body_destroyed1.src = 'static/JS-ship_body_destroyed1.png';
 
             this.background_star1 = new Image();
-            this.background_star1.src = 'static/star.png';
+            this.background_star1.src = 'static/shot6.png';
 
             this.shot1 = new Image();
             this.shot1.src = 'static/shot1.png';

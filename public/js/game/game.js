@@ -47,14 +47,17 @@ window.requestAnimFrame = (function() {
         startNew : function (){
             this.clearAll();
 
-            this.addPlayer();
-            this.addStars();
-
             this.x = 0;
             this.y = 0;
 
             this.vx = 0;
             this.vy = 0;
+
+            this.addPlayer();
+            this.addStars();
+            this.addGlows();
+            
+
             
             this.enemyCooldown = 5000;
             this.enemyTimer = this.enemyCooldown;
@@ -138,10 +141,17 @@ window.requestAnimFrame = (function() {
                 var newStar = new StaticDepthObject("star", 1);
             }
         },
+        addGlows : function () {
+            for(var i = 0; i < 10; i++){
+                var newStar = new StaticDepthObject("glow", 1);
+            }
+        },
         addPlayer : function () {
             this.playerShip = new Ship(1, 1);
             this.playerShip.x = this.renderer.sceneWidth/2;
             this.playerShip.y = this.renderer.sceneHeight/2;
+            this.x = -this.playerShip.x;
+            this.y = -this.playerShip.y;
             this.playerShip.velocity = 0.12;
             this.playerShip.angleVelocity = 0.003;
             this.ships.push(this.playerShip);
@@ -287,12 +297,17 @@ window.requestAnimFrame = (function() {
         checkBroders : function () {
             this.x += this.vx;
             this.y += this.vy;
-            var speed = 0.01;
-            this.vx -= (this.playerShip.x + this.x - this.renderer.sceneWidth/2)*speed;
-            this.vy -= (this.playerShip.y + this.y - this.renderer.sceneHeight/2)*speed;
+            var speedK = 0.01;
+            this.vx -= (this.playerShip.x + this.x)*speedK;
+            this.vy -= (this.playerShip.y + this.y)*speedK;
             //console.log((this.playerShip.x + this.x) + ", " + (this.playerShip.y + this.y));
             this.vx *= this.friction;
             this.vy *= this.friction;
+
+            var summSpeed = Math.sqrt(this.vx*this.vx + this.vy*this.vy);
+
+            //console.log(renderer.cameraDepth);
+            renderer.cameraDepth = 0.5 + summSpeed/3;
         },
         addEnemy : function () {
             //console.log(this.enemyTimer);

@@ -21,15 +21,15 @@ define([
             if(this.enemy.todelete == true || this.enemy.body.destroyed){
                 this.todelete = true;
             }
-            var dx = game.playerShip.x - this.enemy.x;
-            var dy = game.playerShip.y - this.enemy.y;
+            var dx = -game.x - this.enemy.x;
+            var dy = -game.y - this.enemy.y;
             var targetAngle = Math.atan(dy/dx) + Math.PI/2;
 
             if(dx > 0){
                 targetAngle += Math.PI;
             }
-            this.x = game.playerShip.x + Math.sin(targetAngle)*renderer.sceneHeight/3;
-            this.y = game.playerShip.y - Math.cos(targetAngle)*renderer.sceneHeight/3;
+            this.x = -game.x + Math.sin(targetAngle)*renderer.sceneHeight/3;
+            this.y = -game.y - Math.cos(targetAngle)*renderer.sceneHeight/3;
             this.angle = targetAngle;
 
             var range = Math.sqrt(dx*dx + dy*dy);
