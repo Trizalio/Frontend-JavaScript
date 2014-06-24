@@ -61,11 +61,12 @@ window.requestAnimFrame = (function() {
             this.enemyPower = 1;
             this.score = 0;
 
-            this.lastSeconds = 30;
+            this.lastSeconds = 100;
 
             this.pause = false;
             this.lost = false;
             this.play = true;
+            this.addEnemy();
         },
         start : function (){
             this.play = true;
@@ -151,7 +152,7 @@ window.requestAnimFrame = (function() {
             var mainCanon = new Canon(6, 6, 1);
             this.playerShip.attachItem(mainCanon, "canon", this.playerShip.body.slots[0], this.playerShip.body);
             mainCanon.autoAim = false;
-            this.playerShip.canonsGroup3.push(mainCanon);
+            this.playerShip.canonsGroup0.push(mainCanon);
 
             var downModule = new Module(1, 0);
             this.playerShip.attachModule(downModule, downModule.connections[0], 0, 
@@ -271,7 +272,7 @@ window.requestAnimFrame = (function() {
                 this.playerShip.draw();
                 renderer.resetTempShift();
             }*/
-            renderer.drawText(Math.round(this.score), 20, 50, 15, "#FFF");
+            renderer.drawText(Math.round(this.score*5), 20, 50, 15, "#FFF");
         },
         drawAll : function () {
             this.renderer.clearScene();
@@ -322,9 +323,30 @@ window.requestAnimFrame = (function() {
             });
         },
         gameOver :function () {
-            console.log("Game Over");
             this.lastSeconds -= 1;
-            this.play = false;
+            if(this.lastSeconds % 20 == 0){
+                this.playerShip.body.crush();
+            }
+            if(this.lastSeconds == 0){
+                console.log("Game Over");
+                this.play = false;
+            }
+
+            /*var newSprite = new Sprite("explosion", 1);
+            newSprite.x = this.x;
+            newSprite.y = this.y;
+            var sqrtDmg = Math.sqrt(this.damage)*5;
+            newSprite.baseHeight = sqrtDmg;
+            newSprite.baseWidth = sqrtDmg;
+            game.objects.push(newSprite);
+
+            newSprite = new Sprite("glow", 1);
+            newSprite.x = this.x;
+            newSprite.y = this.y;
+            newSprite.baseHeight = sqrtDmg;
+            newSprite.baseWidth = sqrtDmg;
+            game.objects.push(newSprite);*/
+
             
         },
         /*submit : function () {

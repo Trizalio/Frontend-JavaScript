@@ -53,13 +53,13 @@ define([
                 this.reloadSpeed = 0.2;
                 this.side = 0;
                 this.ready = false;
-                this.damage = 25;
+                this.damage = 10;
                 this.shotSpeed = 4;
                 this.shotLifeTime = 150;
                 this.shotEnergy = 50;
                 this.shotWidth = 5;
-                this.shotHeight = 15;
-                this.shotFriction = 0.995;
+                this.shotHeight = 18;
+                this.shotFriction = 0.998;
             }else if(secondClass == 2){
 
                 this.gun.width = 4;
@@ -69,12 +69,12 @@ define([
                 this.reloadSpeed = 0.2;
                 this.side = 0;
                 this.ready = false;
-                this.damage = 4;
+                this.damage = 2;
                 this.shotSpeed = 6;
                 this.shotLifeTime = 40;
                 this.shotEnergy = 20;
-                this.shotWidth = 8;
-                this.shotHeight = 8;
+                this.shotWidth = 6;
+                this.shotHeight = 10;
                 this.shotFriction = 0.999;
             }else if(secondClass == 3){
 
@@ -85,7 +85,7 @@ define([
                 this.reloadSpeed = 0.2;
                 this.side = 0;
                 this.ready = false;
-                this.damage = 4;
+                this.damage = 10;
                 this.shotSpeed = 7;
                 this.shotLifeTime = 60;
                 this.shotEnergy = 100;
@@ -109,7 +109,7 @@ define([
                 this.shotWidth = 4;
                 this.shotHeight = 8;
                 this.shotFriction = 0.999;
-                this.shotAmount = 2;
+                this.shotAmount = 5;
                 this.shotAngle = 0.2;
                 this.autoAim = false;
             }else if(secondClass == 5){
@@ -117,16 +117,16 @@ define([
                 this.gun.width = 8;
                 this.gun.height = 25;
 
-                this.loaded = 10;
-                this.reloadSpeed = 0.2;
+                this.loaded = 12;
+                this.reloadSpeed = 0.8;
                 this.side = 0;
                 this.ready = false;
-                this.damage = 80;
+                this.damage = 90;
                 this.shotSpeed = 6;
                 this.shotLifeTime = 100;
                 this.shotEnergy = 500;
-                this.shotWidth = 6
-                this.shotHeight = 18;
+                this.shotWidth = 8;
+                this.shotHeight = 20;
                 this.shotFriction = 0.995;
                 this.autoAim = false;
             }else if(secondClass == 6){
@@ -135,16 +135,16 @@ define([
                 this.gun.height = 30;
 
                 this.loaded = 30;
-                this.reloadSpeed = 1;
+                this.reloadSpeed = 0.2;
                 this.side = 0;
                 this.ready = false;
                 this.damage = 501;
-                this.shotSpeed = 6;
-                this.shotLifeTime = 100;
+                this.shotSpeed = 5;
+                this.shotLifeTime = 150;
                 this.shotEnergy = 500;
-                this.shotWidth = 6
-                this.shotHeight = 18;
-                this.shotFriction = 0.995;
+                this.shotWidth = 15;
+                this.shotHeight = 45;
+                this.shotFriction = 1;
                 this.autoAim = false;
             }
             this.maxRange = this.shotLifeTime * this.shotSpeed;

@@ -44,7 +44,7 @@ define([
             if(type == 0 && number == 0){
 
                 this.energyCapacity = 5000;
-                this.energyGeneration = 10;
+                this.energyGeneration = 50;
 
                 this.maxHealth = 500;
                 this.width = 20;
@@ -57,7 +57,7 @@ define([
                 this.addConnection(2, 10, 0, -Math.PI/2);
             }else if(type == 1 && number == 0){
                 this.energyCapacity = 2000;
-                this.energyGeneration = 0;
+                this.energyGeneration = 10;
 
                 this.maxHealth = 100;
                 this.width = 20;
@@ -166,10 +166,14 @@ define([
         },
         takeDamage : function (damage) {
             //console.log(damage);
-            this.curHealth -= damage;
             if(this.side == 0){
-                game.score += damage;
+                if(damage < this.curHealth){
+                    game.score += damage;
+                }else{
+                    game.score += this.curHealth;
+                }
             }
+            this.curHealth -= damage;
             if(this.curHealth <= 0){
                 this.destroy();
                 return true;

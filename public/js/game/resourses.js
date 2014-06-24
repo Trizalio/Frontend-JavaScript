@@ -30,7 +30,7 @@ define([
             this.ship_canon_body5 = new Image();
             this.ship_canon_body5.src = 'static/JS-ship_canon_body5.png';
             this.ship_canon_body6 = new Image();
-            this.ship_canon_body6.src = 'static/JS-ship_canon_body5.png';
+            this.ship_canon_body6.src = 'static/JS-ship_canon_body6.png';
             this.ship_canon_gun1 = new Image();
             this.ship_canon_gun1.src = 'static/JS-ship_canon_gun1.png';
             this.ship_canon_gun2 = new Image();
@@ -61,7 +61,7 @@ define([
             this.ship_body_destroyed1.src = 'static/JS-ship_body_destroyed1.png';
 
             this.background_star1 = new Image();
-            this.background_star1.src = 'static/shot6.png';
+            this.background_star1.src = 'static/star.png';
 
             this.shot1 = new Image();
             this.shot1.src = 'static/shot1.png';

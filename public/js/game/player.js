@@ -8,6 +8,7 @@ define([
     var Player = Pilot.$extend ( {
         __init__ : function(ship, side) {
             this.$super(ship, side);
+            ship.canonsGroup0 = [];
             ship.canonsGroup1 = [];
             ship.canonsGroup2 = [];
             ship.canonsGroup3 = [];
@@ -16,9 +17,10 @@ define([
             if(this.ship){
                 if(this.ship.body.destroyed == true){
                     game.gameOver();
+                }else{
+                    //this.checkTarget();
+                    this.move();
                 }
-                this.checkTarget();
-                this.move();
                 if(this.target){
                     this.attack();
                 }
@@ -37,6 +39,13 @@ define([
                     this.ship.canonsGroup1[i].shoot = true;
                 }else{
                     this.ship.canonsGroup1[i].shoot = false;
+                }
+            }
+            for (var i = 0; i < this.ship.canonsGroup0.length; i++){
+                if(game.keydown["z"] == true){
+                    this.ship.canonsGroup0[i].shoot = true;
+                }else{
+                    this.ship.canonsGroup0[i].shoot = false;
                 }
             }
             for (var i = 0; i < this.ship.canonsGroup2.length; i++){
