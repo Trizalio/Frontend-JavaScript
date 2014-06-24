@@ -180,6 +180,9 @@ define([
                 }
             }
             this.curHealth -= damage;
+            if(this.curHealth > this.maxHealth){
+                this.curHealth = this.maxHealth;
+            }
             if(this.curHealth <= 0){
                 this.destroy();
                 return true;

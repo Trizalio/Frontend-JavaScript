@@ -55,7 +55,7 @@ window.requestAnimFrame = (function() {
 
             this.addPlayer();
             this.addStars(30);
-            this.addGlows(20);
+            //this.addGlows(20);
 
 
             
@@ -344,6 +344,7 @@ window.requestAnimFrame = (function() {
                 this.playerShip.body.crush();
             }
             if(this.lastSeconds == 0){
+                $(document).trigger("game::over", this.score);
                 console.log("Game Over");
                 this.play = false;
             }
